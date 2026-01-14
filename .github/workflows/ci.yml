@@ -1,29 +1,18 @@
-name: CI
+name: PHP CI
 
 on:
   push:
-    branches: [main]
+    branches: [ main ]
   pull_request:
-    branches: [main]
+    branches: [ main ]
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
-    services:
-      postgres:
-        image: postgres:15
-        env:
-          POSTGRES_DB: Mary
-          POSTGRES_USER: postgres
-          POSTGRES_PASSWORD: 1234
-        ports:
-          - 5432:5432
-        options: >-
-          --health-cmd="pg_isready -U postgres -d Mary"
-          --health-interval=10s
-          --health-timeout=5s
-          --health-retries=5
+    strategy:
+      matrix:
+        php-version: [8.2]
 
     steps:
     - uses: actions/checkout@v3
@@ -31,16 +20,12 @@ jobs:
     - name: Set up PHP
       uses: shivammathur/setup-php@v2
       with:
-        php-version: 8.2
-        extensions: pdo_pgsql
+        php-version: ${{ matrix.php-version }}
+        extensions: mbstring, intl, pdo_pgsql
+        coverage: none
 
     - name: Install Composer dependencies
-      run: composer install
-
-    - name: Import demo database
-      run: psql -h localhost -U postgres -d Mary -f demo_data.sql
-      env:
-        PGPASSWORD: 1234
+      run: composer install --prefer-dist --no-progress --no-suggest
 
     - name: Run PHPUnit tests
-      run: ./vendor/bin/phpunit tests
+      run: ./vendor/bin/phpunit --configuration phpunit.xml

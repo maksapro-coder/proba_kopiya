@@ -1,8 +1,13 @@
 {
-    "name": "my/project",
-    "description": "Test project",
+    "name": "maksapro-coder/proba_kopiya",
+    "description": "Demo project with PostgreSQL and PHP",
+    "type": "project",
+    "require": {
+        "php": "^8.2",
+        "ext-pdo_pgsql": "*"
+    },
     "require-dev": {
-        "phpunit/phpunit": "^12.5"
+        "phpunit/phpunit": "^10.2"
     },
     "autoload": {
         "psr-4": {
@@ -13,5 +18,14 @@
         "psr-4": {
             "Tests\\": "tests/"
         }
-    }
+    },
+    "scripts": {
+        "test": "phpunit --configuration phpunit.xml"
+    },
+    "config": {
+        "optimize-autoloader": true,
+        "sort-packages": true
+    },
+    "minimum-stability": "stable",
+    "prefer-stable": true
 }
