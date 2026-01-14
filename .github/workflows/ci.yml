@@ -1,4 +1,4 @@
-name: PHP CI
+name: PHP CI/CD
 
 on:
   push:
@@ -7,7 +7,8 @@ on:
     branches: [ main ]
 
 jobs:
-  build:
+  test:
+    name: Прохождение этапа test
     runs-on: ubuntu-latest
 
     strategy:
@@ -15,17 +16,51 @@ jobs:
         php-version: [8.2]
 
     steps:
-    - uses: actions/checkout@v3
+      - uses: actions/checkout@v3
 
-    - name: Set up PHP
-      uses: shivammathur/setup-php@v2
-      with:
-        php-version: ${{ matrix.php-version }}
-        extensions: mbstring, intl, pdo_pgsql
-        coverage: none
+      - name: Set up PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php-version }}
+          extensions: mbstring, intl, pdo_pgsql
+          coverage: none
 
-    - name: Install Composer dependencies
-      run: composer install --prefer-dist --no-progress --no-suggest
+      - name: Install Composer dependencies
+        run: composer install --prefer-dist --no-progress --no-suggest
 
-    - name: Run PHPUnit tests
-      run: ./vendor/bin/phpunit --configuration phpunit.xml
+      - name: Run PHPUnit tests
+        run: ./vendor/bin/phpunit --configuration phpunit.xml --colors=always
+
+  build:
+    name: Прохождение этапа build
+    runs-on: ubuntu-latest
+    needs: test   # выполняется после успешного теста
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Set up PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: 8.2
+          extensions: mbstring, intl, pdo_pgsql
+          coverage: none
+
+      - name: Install Composer dependencies
+        run: composer install --prefer-dist --no-progress --no-suggest
+
+      - name: Build project
+        run: echo "Сборка проекта завершена"
+
+  deploy:
+    name: Прохождение этапа deploy
+    runs-on: ubuntu-latest
+    needs: build   # выполняется после успешного билда
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Deploy project
+        run: |
+          echo "Деплой проекта завершён!"
+          # Здесь можно добавить команды для деплоя на сервер или Docker
