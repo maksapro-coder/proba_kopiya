@@ -1,4 +1,4 @@
-name: CI/CD Pipeline
+name: CI
 
 on:
   push:
@@ -7,37 +7,40 @@ on:
     branches: [main]
 
 jobs:
-  build-test:
+  build:
     runs-on: ubuntu-latest
+
     services:
       postgres:
         image: postgres:15
         env:
+          POSTGRES_DB: Mary
           POSTGRES_USER: postgres
           POSTGRES_PASSWORD: 1234
-          POSTGRES_DB: Mary
         ports:
           - 5432:5432
         options: >-
-          --health-cmd "pg_isready -U postgres"
-          --health-interval 10s
-          --health-timeout 5s
-          --health-retries 5
+          --health-cmd="pg_isready -U postgres -d Mary"
+          --health-interval=10s
+          --health-timeout=5s
+          --health-retries=5
 
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3
+    - uses: actions/checkout@v3
 
-      - name: Set up PHP
-        uses: shivammathur/setup-php@v2
-        with:
-          php-version: 8.4
-          extensions: pgsql, pdo_pgsql
+    - name: Set up PHP
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: 8.2
+        extensions: pdo_pgsql
 
-      - name: Install dependencies
-        run: |
-          composer install
+    - name: Install Composer dependencies
+      run: composer install
 
-      - name: Run tests
-        run: |
-          phpunit tests
+    - name: Import demo database
+      run: psql -h localhost -U postgres -d Mary -f demo_data.sql
+      env:
+        PGPASSWORD: 1234
+
+    - name: Run PHPUnit tests
+      run: ./vendor/bin/phpunit tests
