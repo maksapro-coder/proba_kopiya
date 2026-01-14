@@ -1,0 +1,29 @@
+
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: proba_kopiya-web
+    ports:
+      - "8080:80"
+    volumes:
+      - .:/var/www/html
+    depends_on:
+      - db
+
+  db:
+    image: postgres:15
+    container_name: proba_kopiya-db
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 1234
+      POSTGRES_DB: Mary
+      PGPORT: 5432
+    ports:
+      - "5432:5432"
+    volumes:
+      - proba_kopiya_db_data:/var/lib/postgresql/data
+
+volumes:
+  proba_kopiya_db_data:

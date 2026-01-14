@@ -1,0 +1,72 @@
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    background: #000000; /* Добавим фон для наглядности */
+    position: relative; /* Для возможного позиционирования элементов */
+}
+
+.header-content {
+    display: flex;
+    align-items: center;
+    flex-grow: 1; /* Занимает доступное пространство */
+}
+
+.main-nav {
+    list-style: none;
+    padding: 0;
+    margin: 0 50px 0 20px; /* Отступ справа от меню */
+    display: flex;
+}
+
+.main-nav li {
+    margin-right: 20px;
+}
+
+.main-nav li:last-child {
+    margin-right: 0;
+}
+
+.admin-buttons-container {
+    display: flex;
+    align-items: center;
+    margin-left: auto; /* Автоматический отступ слева */
+    margin-right: 20px; /* Отступ от правого края */
+}
+
+.admin-buttons {
+    padding: 5px 10px;
+    border-radius: 4px;
+}
+
+.admin-buttons ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    gap: 15px; /* Современный способ отступов */
+}
+
+.icons {
+    display: flex;
+    align-items: center;
+    gap: 15px; /* Заменяет margin-left для ссылок */
+}
+
+/* Стили для сообщений */
+.message {
+    background: #d4edda;
+    color: #155724;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 4px;
+}
+
+.error {
+    background: #f8d7da;
+    color: #721c24;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 4px;
+}

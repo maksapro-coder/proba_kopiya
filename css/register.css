@@ -1,0 +1,101 @@
+/* css/register.css */
+.register-container {
+    max-width: 500px;
+    margin: 80px auto 40px;
+    padding: 30px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.register-container h1 {
+    color: #5f1456;
+    text-align: center;
+    margin-bottom: 25px;
+    font-size: 28px;
+}
+
+.register-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.form-group label {
+    font-weight: 600;
+    color: #333;
+    font-size: 16px;
+}
+
+.form-group input,
+.form-group select {
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 16px;
+    transition: border-color 0.3s;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+    border-color: #5f1456;
+    outline: none;
+}
+
+.submit-btn {
+    background-color: #5f1456;
+    color: white;
+    padding: 14px;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-top: 10px;
+}
+
+.submit-btn:hover {
+    background-color: #4a1043;
+}
+
+.login-link {
+    text-align: center;
+    margin-top: 20px;
+    color: #666;
+    font-size: 15px;
+}
+
+.login-link a {
+    color: #5f1456;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.login-link a:hover {
+    text-decoration: underline;
+}
+
+.message {
+    padding: 12px;
+    border-radius: 6px;
+    margin-bottom: 20px;
+    text-align: center;
+    font-weight: 500;
+}
+
+.error-message {
+    background-color: #ffebee;
+    color: #d32f2f;
+}
+
+.success-message {
+    background-color: #e8f5e9;
+    color: #2e7d32;
+}

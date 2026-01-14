@@ -1,0 +1,196 @@
+/* Сообщения */
+.message {
+    text-align: center;
+    padding: 10px 20px;
+    color: white;
+    border: 2px solid rgb(255, 255, 255);
+    border-radius: 5px;
+    background-color: #5f1456;
+    opacity: 1;
+    transition: opacity 0.5s ease-in-out;
+    animation: fadeOut 3s forwards;
+    box-sizing: border-box;
+    min-height: 2em;
+    font-family: 'Titillium Web';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* Центрирование относительно top и left */
+}
+
+.error {
+    border-color: red; /* Красная рамка для ошибок */
+    background-color: rgba(255, 0, 0, 0.8); /* Красный полупрозрачный фон */
+}
+
+@keyframes fadeOut {
+    0% { opacity: 1; }
+    90% { opacity: 1; } 
+    100% { opacity: 0; } 
+}
+
+.error {
+    background-color: #f8d7da; /* Светло-красный фон для сообщения об ошибке */
+    border-color: #f5c6cb;
+    color: #721c24; /* Темно-красный текст */
+}
+
+/* Welcome GIF стили */
+.welcome-gif {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1000;
+    animation: gifFade 3s forwards;
+}
+
+@keyframes gifFade {
+    0% { opacity: 0; transform: translate(-50%, -50%) scale(0.8); }
+    20% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+    80% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+    100% { opacity: 0; transform: translate(-50%, -50%) scale(1.2); }
+}
+
+/* Основные стили */
+.head {
+    font-size: 20pt;
+    vertical-align: 20pt;
+    color: rgb(0, 0, 0);
+    font-weight: bold;
+}
+
+header {
+    margin-top: 0;
+    height: 50pt;
+    display: flex;
+    flex-direction: row;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 10;
+    background-color: #ffffff;
+    align-items: center;
+    justify-content: space-between;
+}
+
+body {
+    margin: 0;
+    background-color: #ffffff;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    font-family: 'Titillium Web';
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.icon {
+    width: 100px;
+    height: 100px;
+}
+
+.top {
+    padding-top: 10pt;
+    padding-bottom: 10pt;
+}
+
+a {
+    padding: 5px 10px 0px 20px;
+    color: rgb(255, 255, 255);
+    text-decoration: none;
+    font-family: 'Titillium Web';
+}
+
+ul {
+    margin-left: -700pt;
+    list-style: none;
+    padding: 0;
+    display: flex;
+}
+
+li {
+    margin-left: 10px;
+}
+
+.icons {
+    display: flex;
+    margin-right: 40px;
+}
+
+.icons img {
+    width: 70px;
+    height: 70px;
+    margin-left: 10px;
+}
+
+.image-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 100px;
+    flex-wrap: wrap;
+    min-height: 100px;
+}
+
+.image-container img {
+    max-width: 50%;
+    height: 500pt;
+    width: 340pt;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.image-container img:hover {
+    transform: scale(1.1); 
+}
+
+a:hover {
+    color: #ff3be8;
+    -webkit-transform: translateX(-7px);
+    transform: translateX(-7px);
+}
+
+.text {
+    padding-top: 2.5pt;
+    text-align: center;
+    font-size: 50pt;
+    padding: 200pt;
+    padding-left: 100pt;
+    margin: 0;
+    font-family: 'Pixelify Sans';
+    color: #ffffff;
+    text-shadow:
+        0 0 7px #fff,
+        0 0 10px #fff,
+        0 0 21px #fff,
+        0 0 42px #362d2d,
+        0 0 82px #1d1818,
+        0 0 92px #1d1818,
+        0 0 102px #1d1818,
+        0 0 151px #1d1818;
+    white-space: pre-wrap;
+}
+
+.past_text {
+    padding-top: 2.5pt;
+    text-align: center;
+    font-size: 50pt;
+    padding: 200pt;
+    padding-left: 100pt;
+    margin-top: -190pt;
+    margin-bottom: -230pt;
+    font-family: 'Pixelify Sans';
+    color: #ffffff;
+    text-shadow:
+        0 0 7px #fff,
+        0 0 10px #fff,
+        0 0 21px #fff,
+        0 0 42px #06ff0b,
+        0 0 82px #06ff0b,
+        0 0 92px #06ff0b,
+        0 0 102px #06ff0b,
+        0 0 151px #06ff0b;
+    white-space: pre-wrap;
+}
+
